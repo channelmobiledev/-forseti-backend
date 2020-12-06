@@ -4,8 +4,8 @@
   "description": "OnlyFans, but for pictures of desk setups ",
   "main": "app.ts",
   "scripts": {
-    "start": "nodemon server.ts",
-    "prettier-format": "prettier --config .prettierrc '**/*.ts' --write"
+    "start": "nodemon src/server.ts",
+    "prettier-format": "prettier --config .prettierrc './src/**/*.ts' --write"
   },
   "author": "Channel Mobile Dev",
   "license": "ISC",
