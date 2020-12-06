@@ -1,6 +1,5 @@
 import express from 'express';
 import FeedItemModel from './models/FeedItemModel';
-import UserModel from './models/UserModel';
 
 const app = express();
 const port = process.env.PORT || 8000;
