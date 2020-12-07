@@ -11,6 +11,6 @@ import routeDesktop from './RouteDesktop';
 const router = express.Router();
 
 router.use('/feed', routeFeed);
-//router.use('/desktops', routesDesktop);
+router.use('/desktop', routeDesktop);
 
 export default router;

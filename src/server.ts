@@ -5,6 +5,11 @@ const app = express();
 const port = process.env.PORT || 8000;
 
 /**
+ * Parse JSON body requests
+ */
+app.use(express.json());
+
+/**
  * Route methods
  */
 app.use(routes);
