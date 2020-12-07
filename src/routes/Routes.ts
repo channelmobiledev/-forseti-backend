@@ -2,15 +2,15 @@
  * Imports
  */
 import express from 'express';
-import routesFeed from './RoutesFeed';
-import routesDesktop from './RoutesDesktop';
+import routeFeed from './RouteFeed';
+import routeDesktop from './RouteDesktop';
 
 /**
  * Get Router object
  */
 const router = express.Router();
 
-router.use('/feed', routesFeed);
+router.use('/feed', routeFeed);
 //router.use('/desktops', routesDesktop);
 
 export default router;
