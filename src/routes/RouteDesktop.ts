@@ -1,3 +1,3 @@
 const RouteDesktop = () => {};
 
-export default RoutesDesktop;
+export default RouteDesktop;
