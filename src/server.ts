@@ -1,6 +1,12 @@
+/**
+ * Imports
+ */
 import express from 'express';
 import routes from './routes/Routes';
 
+/**
+ * Server settings
+ */
 const app = express();
 const port = process.env.PORT || 8000;
 
