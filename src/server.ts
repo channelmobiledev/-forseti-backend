@@ -2,7 +2,9 @@
  * Imports
  */
 import express from 'express';
+import mongoose from 'mongoose';
 import routes from './routes/Routes';
+import Config from './config';
 
 /**
  * Server settings
@@ -14,6 +16,24 @@ const port = process.env.PORT || 8000;
  * Parse JSON body requests
  */
 app.use(express.json());
+
+/**
+ * Setup DB
+ */
+const mongoDB = Config.db_url;
+
+console.log('DEBUG mongoDB: ' + mongoDB);
+
+mongoose.connect(mongoDB, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once('open', () => {
+  console.log('MongoDB: Connected to DB');
+});
 
 /**
  * Route methods
@@ -36,5 +56,4 @@ app.on('error', handleErrors);
 app.listen(port, () => {
   console.log(`⚡[server]: Server is running at http://localhost:${port}`);
 });
-
 app;

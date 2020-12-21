@@ -2,7 +2,6 @@
  * Imports
  */
 import express from 'express';
-import FeedItemModel from '../models/FeedItemModel';
 
 /**
  * Get Router object
