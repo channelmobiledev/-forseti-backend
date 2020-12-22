@@ -2,13 +2,15 @@ import UserModel from './UserModel';
 import PostModel from './PostModel';
 import mongoose, { Schema } from 'mongoose';
 
-interface FeedItemModel {
+type FeedItemModel = {
   user: UserModel;
   post: PostModel;
-}
+};
 
 const FeedItemModelSchema = () => {
   var FeedSchema = new Schema({
+    _id: Schema.Types.ObjectId,
+    __v: Schema.Types.Number,
     user: {
       name: {
         type: String,
@@ -36,7 +38,12 @@ const FeedItemModelSchema = () => {
     }
   });
 
-  return mongoose.model('FeedModel', FeedSchema);
+  // TODO SOLVE THIS HACK TO A SERVICE THAT CHECKS IF THE MODEL WAS INITIALIZED
+  try {
+    return mongoose.model('FeedModel', FeedSchema);
+  } catch (e) {
+    return mongoose.model('FeedModel');
+  }
 };
 
 export { FeedItemModel, FeedItemModelSchema };
