@@ -1,12 +1,6 @@
-/**
- * Imports
- */
 import { Service } from 'typedi';
 import { FeedDataService } from '../data/FeedDataService';
 
-/**
- * Service methods
- */
 @Service()
 export default class FeedServices {
   constructor(private feedDataService: FeedDataService) {}

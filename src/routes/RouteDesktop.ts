@@ -1,11 +1,5 @@
-/**
- * Imports
- */
 import express from 'express';
 
-/**
- * Get Router object
- */
 const router = express.Router();
 
 const desktopGetDeskDetails = (req: any, res: any) => {
@@ -58,9 +52,6 @@ const desktopGetDeskDetails = (req: any, res: any) => {
   console.log('GET /desktop/ success');
 };
 
-/**
- * Router endpoints
- */
 router.post('/', desktopGetDeskDetails);
 
 export default router;
