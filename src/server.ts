@@ -1,4 +1,9 @@
 /**
+ * First line imports
+ */
+import 'reflect-metadata';
+
+/**
  * Imports
  */
 import express from 'express';
@@ -22,17 +27,18 @@ app.use(express.json());
  */
 const mongoDB = Config.db_url;
 
-console.log('DEBUG mongoDB: ' + mongoDB);
-
 mongoose.connect(mongoDB, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
 
 const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.on(
+  'error',
+  console.error.bind(console, '⚡[database]: MongoDB connection error:')
+);
 db.once('open', () => {
-  console.log('MongoDB: Connected to DB');
+  console.log('⚡[database]: Connected to MongoDB');
 });
 
 /**

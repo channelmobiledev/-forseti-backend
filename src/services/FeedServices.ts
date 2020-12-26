@@ -1,13 +1,11 @@
-import DataFeed from '../data/DataFeed';
+import { Service, Container } from 'typedi';
+import { FeedDataService } from '../data/FeedDataService';
 
+@Service()
 export default class FeedServices {
-  dataFeed: DataFeed;
+  constructor(private feedDataService: FeedDataService) {}
 
-  constructor() {
-    this.dataFeed = new DataFeed();
-  }
-
-  public async GetFeed(userId: number) {
-    return await this.dataFeed.getFeedById(userId);
+  async GetFeed(userId: number) {
+    return await this.feedDataService.getUserFeed(userId);
   }
 }

@@ -1,6 +1,7 @@
 /**
  * Imports
  */
+import Container from 'typedi';
 import express from 'express';
 import FeedServices from '../services/FeedServices';
 
@@ -13,7 +14,7 @@ const router = express.Router();
  * Router declarations
  */
 const getFeedData = async (req: any, res: any) => {
-  const feedServices = new FeedServices();
+  const feedServices = Container.get(FeedServices);
 
   const feed = await feedServices.GetFeed(-1);
 
