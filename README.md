@@ -2,7 +2,7 @@
 
 Backend for the [Forseti Mobile App](https://github.com/channelmobiledev/forseti). Provides the App with all the necessary endpoints to make it work!
 
-## Install
+## 🛠️ Install
 
 Software requirements
 
@@ -19,7 +19,7 @@ Install project dependency packages
 npm install
 ```
 
-## Run
+## 🏃‍♀️ Run
 
 Docker
 
