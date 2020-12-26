@@ -1,7 +1,7 @@
 /**
  * Imports
  */
-import { Service, Container } from 'typedi';
+import { Service } from 'typedi';
 import { FeedDataService } from '../data/FeedDataService';
 
 /**
