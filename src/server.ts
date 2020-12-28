@@ -1,52 +1,65 @@
-import express from 'express';
-import FeedItemModel from './models/FeedItemModel';
+/**
+ * First line imports
+ */
+import 'reflect-metadata';
 
+/**
+ * Imports
+ */
+import express from 'express';
+import mongoose from 'mongoose';
+import routes from './routes/Routes';
+import Config from './config';
+
+/**
+ * Server settings
+ */
 const app = express();
 const port = process.env.PORT || 8000;
 
-app.listen(port, () => {
-  console.log(`⚡[server]: Server is running at http://localhost:${port}`);
+/**
+ * Parse JSON body requests
+ */
+app.use(express.json());
+
+/**
+ * Setup DB
+ */
+const mongoDB = Config.db_url;
+
+mongoose.connect(mongoDB, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 });
 
-const controllerFeed = (req: any, res: any) => {
-  const response = new Array<FeedItemModel>(
-    {
-      user: {
-        name: 'Channel Mobile Dev',
-        avatar: 'https://source.unsplash.com/random/800x600'
-      },
-      post: {
-        id: 12345,
-        title: 'Example overkill desk',
-        photo:
-          'https://cdn.shopify.com/s/files/1/0338/5360/3885/products/embody_prd_gallery_nevi_05_2x_0a3fc5a7-d667-4f5f-88a6-1b918ef56017_1280x1280.jpg'
-      }
-    },
-    {
-      user: {
-        name: 'Channel Mobile Dev',
-        avatar: 'https://source.unsplash.com/random/800x600'
-      },
-      post: {
-        id: 54321,
-        title: 'Example overkill desk',
-        photo:
-          'https://cdn.shopify.com/s/files/1/0338/5360/3885/products/embody_prd_gallery_nevi_05_2x_0a3fc5a7-d667-4f5f-88a6-1b918ef56017_1280x1280.jpg'
-      }
-    }
-  );
+const db = mongoose.connection;
+db.on(
+  'error',
+  console.error.bind(console, '⚡[database]: MongoDB connection error:')
+);
+db.once('open', () => {
+  console.log('⚡[database]: Connected to MongoDB');
+});
 
-  res.json(response);
+/**
+ * Route methods
+ */
+app.use(routes);
 
-  console.log('GET /feed/ success');
-};
-
+/**
+ * API methods
+ */
 const handleErrors = (err: any) => {
   if (err) {
     return console.error(err);
   }
 };
 
-app.get('/feed/', controllerFeed);
+/**
+ * Server startup
+ */
 app.on('error', handleErrors);
+app.listen(port, () => {
+  console.log(`⚡[server]: Server is running at http://localhost:${port}`);
+});
 app;
