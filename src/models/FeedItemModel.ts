@@ -1,6 +1,6 @@
 import { Service } from 'typedi';
 import UserModel from './UserModel';
-import PostModel from './PostModel';
+import { PostModel } from './DeskModel';
 import mongoose, { Schema } from 'mongoose';
 
 export type FeedItemModel = {
