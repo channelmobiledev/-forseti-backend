@@ -10,6 +10,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import routes from './routes/Routes';
 import Config from './config';
+import cors from 'cors';
 
 /**
  * Server settings
@@ -18,9 +19,19 @@ const app = express();
 const port = process.env.PORT || 8000;
 
 /**
+ * CORS settings
+ */
+const corsOptions = {
+  origin: 'http://localhost:' + port
+};
+
+//app.use(cors(corsOptions));
+
+/**
  * Parse JSON body requests
  */
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 /**
  * Setup DB
