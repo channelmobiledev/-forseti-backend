@@ -30,15 +30,13 @@ export default class UserServices {
     await User.findOne({
       username: req.body.username
     }).exec((err: any, user: any) => {
-      console.log('DEBUG login');
-      console.log(
-        'DEBUG req.body.username: ' + JSON.stringify(req.body.username)
-      );
-
       if (err) {
-        console.log('DEBUG login -> error');
-
         res.status(500).send({ message: err });
+        return;
+      }
+
+      if (!user) {
+        res.status(404).send({ message: 'Failed! Username does not exist!' });
         return;
       }
 
@@ -91,11 +89,6 @@ export default class UserServices {
           res.status(500).send({ message: err });
           return;
         }
-
-        console.log('DEBUG user exists? ' + JSON.stringify(user));
-        console.log(
-          'DEBUG req.body.username? ' + JSON.stringify(req.body.username)
-        );
 
         if (!user) {
           res.status(404).send({ message: 'Failed! Username does not exist!' });
