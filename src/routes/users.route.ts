@@ -18,8 +18,6 @@ router.post(
   [userServices.checkDuplicateUsername, userServices.checkDuplicateEmail],
   signupUser
 );
-
-router.get('/signin', signinUser);
-// router.get('/signin', [userServices.checkUsernameExists], signinUser);
+router.get('/signin', [userServices.checkUsernameExists], signinUser);
 
 export default router;
