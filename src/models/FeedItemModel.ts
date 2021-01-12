@@ -1,12 +1,5 @@
 import { Service } from 'typedi';
-import UserModel from './UserModel';
-import PostModel from './PostModel';
 import mongoose, { Schema } from 'mongoose';
-
-export type FeedItemModel = {
-  user: UserModel;
-  post: PostModel;
-};
 
 @Service()
 export class FeedModelService {
